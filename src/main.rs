@@ -5,7 +5,7 @@ use primos_adri::get_primos_adri;
 #[command(author, version, about, long_about = None)]
 struct Args {
     #[clap(short, long, default_value_t = 5)]
-    #[arg(value_parser = clap::value_parser!(u8).range(5..))]
+    #[arg(value_parser = clap::value_parser!(u8).range(2..))]
     digits: u8,
 }
 
