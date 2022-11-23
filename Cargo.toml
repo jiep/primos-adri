@@ -1,6 +1,6 @@
 [package]
 name = "primos-adri"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "A generator of Primos de Adri"
 
@@ -9,3 +9,11 @@ description = "A generator of Primos de Adri"
 [dependencies]
 clap = { version = "4.0.26", features = ["derive"] }
 regex = "1.7.0"
+
+[lib]
+name = "primos_adri"
+path = "src/lib.rs"
+
+[profile.release]
+opt-level = 3
+lto = "fat"

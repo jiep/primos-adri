@@ -1,47 +1,30 @@
 use clap::{command, Parser};
-use regex::Regex;
-
-fn primes(maximum: u64) -> Vec<u64> {
-    let mut primes = vec![2];
-
-    for candidate in 3..maximum {
-        let square_root = (candidate as f64).sqrt() as u64 + 1;
-        let is_prime = primes
-            .iter()
-            .take_while(|p| p <= &&square_root)
-            .all(|p| candidate % p != 0);
-        if is_prime {
-            primes.push(candidate);
-        }
-    }
-
-    primes
-}
+use primos_adri::get_primos_adri;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    #[clap(short, long, default_value_t = 100000)]
-    maximum: u64,
+    #[clap(short, long, default_value_t = 5)]
+    #[arg(value_parser = clap::value_parser!(u8).range(5..))]
+    digits: u8,
 }
 
 fn main() {
     let args = Args::parse();
 
-    let maximum: u64 = args.maximum;
-    let is_primo_adri = Regex::new(r"[2,3,5,7]{4}7").unwrap();
+    let maximum = 10_u64.pow(args.digits as u32);
 
-    let primes = primes(maximum);
+    let primos_adri = get_primos_adri(args.digits);
 
-    let primos_adri: Vec<_> = primes
+    let number_of_primos_adri = primos_adri.len();
+    let primos_adri = primos_adri
         .iter()
-        .filter(|p| is_primo_adri.is_match(&p.to_string()))
-        .collect();
+        .map(|x| x.to_string())
+        .collect::<Vec<String>>()
+        .join("\n");
 
     println!(
-        "{} Primos de Adri hasta {}:\n{:?}",
-        primos_adri.len(),
-        maximum,
-        primos_adri
+        "{} Primos de Adri up to {}:\n{}",
+        number_of_primos_adri, maximum, primos_adri
     );
 }
