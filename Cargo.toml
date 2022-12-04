@@ -1,6 +1,6 @@
 [package]
 name = "primos-adri"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2021"
 description = "Generator and checker of Primos de Adri"
 
