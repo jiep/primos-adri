@@ -19,40 +19,59 @@ Download the latest version from [Releases](https://github.com/jiep/primos-adri/
 1. Install [Rust](https://www.rust-lang.org/tools/install)
 2. Check source code
 
-```
-cargo check
-``` 
+  ```
+  cargo check
+  ``` 
 
-3. Compile binary
+3. Build binary
 
-```
-cargo build
-``` 
+  ```
+  cargo build
+  ``` 
 
 4. Run tests
 
-```
-cargo test
-```
+  ```
+  cargo test
+  ```
 
 > Note: for release target, add --release
 
 5. Run binary
 
-```
-cargo run
-# or
-./target/release/primos-adri # for release version
-./target/debug/primos-adri # for debug version
-```
+  ```
+  cargo run                     # for debug version
+
+  # or
+
+  ./target/release/primos-adri  # for release version
+  ```
 
 ## 🚴 Usage
 
 ```
-./target/release/primos-adri --help
+primos-adri --help
 A generator of Primos de Adri
 
-Usage: primos-adri [OPTIONS]
+Usage: primos-adri <COMMAND>
+
+Commands:
+  check     Check if a given number is Primo de Adri
+  generate  Generate Primos de Adri with given digits
+  help      Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help information
+  -V, --version  Print version information
+```
+
+### Generate
+
+```
+primos-adri generate --help
+Generate Primos de Adri with given digits
+
+Usage: primos-adri generate [OPTIONS]
 
 Options:
   -d, --digits <DIGITS>  [default: 5]
@@ -60,12 +79,39 @@ Options:
   -V, --version          Print version information
 ```
 
-### Example
-
-Primos de Adri with 5 digits
+### Check
 
 ```
-./target/release/primos-adri --digits 5
+Check if a given number is Primo de Adri
+
+Usage: primos-adri check --number <NUMBER>
+
+Options:
+  -n, --number <NUMBER>  
+  -h, --help             Print help information
+  -V, --version          Print version information
+```
+
+### Examples
+
+#### Check if 772757 is Primo de Adri
+
+```
+primos-adri check --number 772757
+772757 is a Primo de Adri!
+```
+
+#### Check if 332757 is Primo de Adri
+
+```
+primos-adri check --number 332757
+332757 is NOT a Primo de Adri!
+```
+
+#### Generate Primos de Adri with 5 digits
+
+```
+primos-adri generate --digits 5
 66 Primos de Adri up to 100000:
 22277
 22727
@@ -134,3 +180,8 @@ Primos de Adri with 5 digits
 77527
 77557
 ```
+
+## License
+This project is primarily distributed under the terms of both the MIT license and the Apache License (Version 2.0).
+
+See [LICENSE-APACHE](./LICENSE-APACHE) and [LICENSE-MIT](./LICENSE-MIT) for details.
