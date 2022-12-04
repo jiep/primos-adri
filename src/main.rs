@@ -1,5 +1,5 @@
 use clap::{Args, Parser, Subcommand};
-use primos_adri::{generate_primos_adri, check_if_primo_adri};
+use primos_adri::{check_if_primo_adri, generate_primos_adri};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -31,8 +31,6 @@ struct Check {
     number: u32,
 }
 
-
-
 fn main() {
     let cli = Cli::parse();
 
@@ -53,11 +51,15 @@ fn main() {
                 "{} Primos de Adri up to {}:\n{}",
                 number_of_primos_adri, maximum, primos_adri
             );
-        },
+        }
         Commands::Check(args) => {
             let result = check_if_primo_adri(args.number.into());
 
-            println!("{} is{} a Primo de Adri!", args.number, if result { "" } else { " NOT" });
+            println!(
+                "{} is{} a Primo de Adri!",
+                args.number,
+                if result { "" } else { " NOT" }
+            );
         }
     }
 }
