@@ -2,7 +2,7 @@
 
   <h1><code>primos-adri</code></h1>
 
-  <strong>A generator of Primos de Adri</strong>
+  <strong>Generator and checker of Primos de Adri</strong>
 
   [![ci](https://github.com/jiep/primos-adri/actions/workflows/ci.yml/badge.svg)](https://github.com/jiep/primos-adri/actions/workflows/ci.yml)
   [![dependency status](https://deps.rs/repo/github/jiep/primos-adri/status.svg)](https://deps.rs/repo/github/jiep/primos-adri)
@@ -51,7 +51,7 @@ Download the latest version from [Releases](https://github.com/jiep/primos-adri/
 
 ```
 primos-adri --help
-A generator of Primos de Adri
+Generator and checker of Primos de Adri
 
 Usage: primos-adri <COMMAND>
 
