@@ -41,3 +41,37 @@ pub fn check_if_primo_adri(number: u64) -> bool {
 
     is_prime && is_primo_adri
 }
+
+#[test]
+fn primes_works() {
+    let p = primes(10_u64);
+    assert_eq!(p, vec![2, 3, 5, 7]);
+
+    let p = primes(100_u64);
+    assert_eq!(
+        p,
+        vec![
+            2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83,
+            89, 97
+        ]
+    );
+}
+
+#[test]
+fn check_generate_primos_adri() {
+    let pa = generate_primos_adri(5_u8);
+
+    assert_eq!(pa.len(), 66);
+    assert!(pa.contains(&22277_u64));
+    assert!(pa.contains(&35257_u64));
+    assert!(pa.contains(&75377_u64));
+}
+
+#[test]
+fn check_primo_adri() {
+    let pa = generate_primos_adri(5_u8);
+    assert!(pa.iter().all(|x| check_if_primo_adri(*x)));
+
+    let pa = generate_primos_adri(7_u8);
+    assert!(pa.iter().all(|x| check_if_primo_adri(*x)));
+}
