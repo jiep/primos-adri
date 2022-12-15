@@ -5,7 +5,6 @@
   <strong>Generator and checker of Primos de Adri</strong>
 
   [![ci](https://github.com/jiep/primos-adri/actions/workflows/ci.yml/badge.svg)](https://github.com/jiep/primos-adri/actions/workflows/ci.yml)
-  [![dependency status](https://deps.rs/repo/github/jiep/primos-adri/status.svg)](https://deps.rs/repo/github/jiep/primos-adri)
 
   <sub>Built with 🦀</sub>
 </div>
