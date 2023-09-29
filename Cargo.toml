@@ -7,7 +7,7 @@ description = "Generator and checker of Primos de Adri"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "4.1.9", features = ["derive"] }
+clap = { version = "4.4.6", features = ["derive"] }
 primes = "0.3.0"
 regex = "1.9.5"
 
