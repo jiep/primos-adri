@@ -47,10 +47,7 @@ fn main() {
                 .collect::<Vec<String>>()
                 .join("\n");
 
-            println!(
-                "{} Primos de Adri up to {}:\n{}",
-                number_of_primos_adri, maximum, primos_adri
-            );
+            println!("{number_of_primos_adri} Primos de Adri up to {maximum}:\n{primos_adri}");
         }
         Commands::Check(args) => {
             let result = check_if_primo_adri(args.number.into());
