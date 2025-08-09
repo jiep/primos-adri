@@ -1,7 +1,7 @@
 [package]
 name = "primos-adri"
 version = "0.3.10"
-edition = "2021"
+edition = "2024"
 description = "Generator and checker of Primos de Adri"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
