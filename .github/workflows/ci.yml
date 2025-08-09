@@ -73,6 +73,7 @@ jobs:
         if: ${{ !contains(matrix.config.target, 'windows') }}
         run: |
           BIN=primos-adri
+          BIN_NAME=${BIN}
           VERSION=${VERSION}
           TARGET=${{ matrix.config.target }}
           if [[ ${TARGET} == *"windows"* ]]; then
