@@ -1,6 +1,8 @@
 on: [push]
 
 name: ci
+permissions:
+  contents: read
 
 jobs:
   build_and_test:
@@ -30,6 +32,8 @@ jobs:
     needs: build_and_test
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ${{ matrix.config.os }}
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
