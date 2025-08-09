@@ -100,7 +100,6 @@ jobs:
           VERSION=${VERSION}
           BIN_NAME=${BIN}-${VERSION}.exe
           TARGET=${{ matrix.config.target }}
-          BIN_NAME=${BIN}-${VERSION}.exe
           cp target/${TARGET}/release/${BIN}.exe target/${TARGET}/release/${BIN_NAME}
           cd target/${TARGET}/release
           sha256sum ${BIN_NAME} > digest.sha256
