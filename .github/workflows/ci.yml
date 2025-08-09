@@ -79,13 +79,13 @@ jobs:
           if [[ ${TARGET} == *"windows"* ]]; then
             BIN_NAME=${BIN}-${VERSION}.exe
           fi
+          cp target/${TARGET}/release/${BIN} target/${TARGET}/release/${BIN_NAME}
           if [[ ${TARGET} != *"darwin"* ]]; then
             strip target/${TARGET}/release/${BIN_NAME}
           fi
           if [[ ${TARGET} == *"darwin"* ]]; then
             brew install coreutils
           fi
-          cp target/${TARGET}/release/${BIN} target/${TARGET}/release/${BIN_NAME}
           cd target/${TARGET}/release
           if [[ ${TARGET} != *"windows"* ]]; then
             sha256sum ${BIN_NAME} > digest.sha256
