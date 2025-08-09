@@ -64,6 +64,7 @@ jobs:
 
       - name: Get version
         id: get_version
+        shell: bash
         run: |
           VERSION=$(grep '^version =' Cargo.toml | head -n1 | cut -d '"' -f2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
