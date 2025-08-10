@@ -3,8 +3,6 @@ on: [push]
 name: ci
 permissions:
   contents: read
-  id-token: write
-  attestations: write
 
 jobs:
   build_and_test:
@@ -36,6 +34,8 @@ jobs:
     runs-on: ${{ matrix.config.os }}
     permissions:
       contents: write
+      id-token: write
+      attestations: write
     strategy:
       fail-fast: false
       matrix:
