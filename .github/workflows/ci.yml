@@ -95,7 +95,6 @@ jobs:
           fi
           zip ../../../${BIN}-${VERSION}-${TARGET}.zip ${BIN_NAME} digest.sha256
           cd -
-
       - name: Package all targets for Windows
         if: ${{ contains(matrix.config.target, 'windows') }}
         shell: bash
