@@ -3,6 +3,8 @@ on: [push]
 name: ci
 permissions:
   contents: read
+  id-token: write
+  attestations: write
 
 jobs:
   build_and_test:
