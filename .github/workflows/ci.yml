@@ -112,11 +112,47 @@ jobs:
         uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
           subject-path: primos-adri-${{ env.VERSION }}-${{ matrix.config.target }}.zip
-      - name: Add to Releases
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
+
+      - name: Upload packaged artifact
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
-          artifacts: "*.zip"
-          generateReleaseNotes: true
-          allowUpdates: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: release-${{ matrix.config.target }}
+          path: primos-adri-${{ env.VERSION }}-${{ matrix.config.target }}.zip
+          if-no-files-found: error
+
+  release:
+    name: Create immutable release
+    needs: deploy
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download packaged artifacts
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: release-*
+          path: release-artifacts
+          merge-multiple: true
+
+      - name: Verify packaged artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(release-artifacts/*.zip)
+          if [[ ${#files[@]} -eq 0 ]]; then
+            echo "No release artifacts were downloaded"
+            exit 1
+          fi
+
+      - name: Create immutable release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 || \
+          gh release create "$TAG" release-artifacts/*.zip --repo "$REPO" --verify-tag --generate-notes
